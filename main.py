@@ -2,9 +2,11 @@ users = ["sithLord", "d_Vader", "GENERALleia", "grogu", "there_is_no_try", "MyRe
 passwords = ["Ancient enimes r us", "I'm Your Father", "May the Force be with you", "patu", "Yoda", "Jedi", "May the Force be with you"]
 new_passwords = []
 
+end = True
 
 def start():
-    end = True
+    global end
+    
     print(users)
     print(passwords)
     print("Welcome to the program.", end="\n"*2)
