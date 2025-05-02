@@ -1,40 +1,48 @@
+import bcrypt
+
+salt = b"$2b$12$ieYNkQp8QumgedUo30nuPO"
+
 def start():
+    end = True
+
     print("Welcome to the program.", end="\n"*2)
     print("1. Login")
     print("2. Register")
     print("3. Quit", end="\n"*2)
 
-    while True:
+    while end:
         question = input("What would you like to do? ").capitalize().strip()
         if question == "Login" or question == "1":
             login()
-            break
+            end = False
         if question == "Register" or question == "2":
             register()
-            break
+            end = False
         if question == "Quit" or question == "3":
             print("Goodbye and Thank you.")
-            break  
+            end = False  
         else: 
             print("Invaild input. Try again.")
             continue
 
 
 def newstart():
+    end = True
+
     print("Welcome Back. ", end="\n"*2)
     print("1. Change Password")
     print("2. Logout", end="\n"*2)
 
-    while True:
+    while end:
         question = input("What would you like to do? ").title().strip()
         if question == "Change Password" or question == "1":
             change_password()
-            break
+            end = False
 
         elif question == "Logout" or question == "2":
             print("-"*50)
             start()
-            break
+            end = False
             
         else:
             print("Invaild input. Try again.")
@@ -47,7 +55,7 @@ def login():
     if c_user not in users:
         print("Do you need to register? ")
         print("-"*50)
-        start()
+        
 
     for i in range(len(users)):
         if c_user == users[i]:
@@ -73,10 +81,18 @@ def login():
 
 
 def change_password():
-    print("This function does not work as of right now. ")
-    newstart()
-    
+    user = input("Please re-enter your username: ")
+    if user in users:
+        new_password = input("Enter your new password: ")
+        users[user] = bcrypt.hashpw(new_password.encode(), bcrypt.gensalt())
+        print("Password updated successfully!")
+    else:
+        print("User not found.")
+
+
 def register():
+    end = True
+
     new_user = input("What would you like your user to be? ")
     users.append(new_user)
 
@@ -84,12 +100,12 @@ def register():
 
     if len(new_password) < 4:
         print("Password must be longer than 4 character.")
-        while True:
+        while end:
             new_password = input("What would like you new password to be: ")
             if len(new_password) < 4:
                 continue
             else: 
-                break
+                end = False
     
     passwords.append(new_password)
     print("Thank you for joining. ")
@@ -98,6 +114,7 @@ def register():
 
 
 def change_password():
+    end = True
 
     user = input("Please re-enter your user: ")
 
@@ -113,12 +130,12 @@ def change_password():
     
         if len(n_password) < 4:
             print("Password must be longer than 4 character.")
-            while True:
+            while end == True:
                 n_password = input("What would like you new password to be: ")
                 if len(n_password) < 4:
                     continue
                 else: 
-                    break
+                    end = False
     
         passwords.append(n_password)
         print("-"*50)
