@@ -85,33 +85,6 @@ def login():
 
 
 def change_password():
-    print("This function does not work as of right now. ")
-    newstart()
-    
-def register():
-    new_user = input("What would you like your user to be? ")
-    users.append(new_user)
-
-    new_password = input("What is your password: ")               
-
-    if len(new_password) < 4:
-        print("Password must be longer than 4 character.")
-        while True:
-            new_password = input("What would like you new password to be: ")
-            if len(new_password) < 4:
-                continue
-            else: 
-                break
-    
-    passwords.append(new_password)
-    print("Thank you for joining. ")
-    print(passwords)
-    print(users)
-    print("-"*50)
-    newstart()
-
-
-def change_password():
 
     user = input("Please re-enter your user: ")
 
@@ -139,6 +112,30 @@ def change_password():
         print("Yeah this function pretty much doesn't reassign the password so.")
         newstart()
     
+def register():
+    new_user = input("What would you like your user to be? ")
+    users.append(new_user)
+
+    new_password = input("What is your password: ")               
+
+    if len(new_password) < 4:
+        print("Password must be longer than 4 character.")
+        while True:
+            new_password = input("What would like you new password to be: ")
+            if len(new_password) < 4:
+                continue
+            else: 
+                break
+    
+    passwords.append(new_password)
+    print("Thank you for joining. ")
+    print(passwords)
+    print(users)
+    print("-"*50)
+    newstart()
+
+
+
 
 
 
